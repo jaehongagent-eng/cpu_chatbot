@@ -20,11 +20,11 @@ client = OpenAI(
 # "llama-3.3-70b"
 # "llama3.1-8b"
 # "gpt-oss-120b"
-llm_model = "gpt-oss-120b"  
+llm_model = "gpt-oss-120b"
 if "llm_model" not in st.session_state:
     st.session_state["llm_model"] = llm_model
 
-st.title("나의 AI 친구 😎")
+st.title("나의 AI 친구 😎😎😎")
 
 prompt = """
 역할:너는 공감을 잘해주는 나의 친구야.
@@ -36,7 +36,7 @@ prompt = """
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {
-            "role": "system", 
+            "role": "system",
             "content": prompt
         }
     ]
@@ -65,13 +65,14 @@ if prompt := st.chat_input("무엇이든 물어보세요."):
             stream=True
         )
         response = st.write_stream(stream)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append(
+        {"role": "assistant", "content": response})
 
 
 if __name__ == "__main__":
     import subprocess
     import sys
-    
+
     # 환경 변수로 재실행 방지
     if not os.environ.get("STREAMLIT_RUNNING"):
         os.environ["STREAMLIT_RUNNING"] = "1"
